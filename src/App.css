@@ -2,3 +2,23 @@ body {
   background-color:  #10131d;
   color: #f5f7fb;
 }
+
+a {
+  text-decoration: none;
+  color: #f5f7fb;
+}
+
+.logo {
+  font-size: 35px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.userPr {
+  width: 7vh;
+  border: 1px solid red;
+  border-radius: 15vh;
+}
