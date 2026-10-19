@@ -10,15 +10,41 @@ a {
 
 .logo {
   font-size: 35px;
+  margin-right: 60vh;
 }
 
 nav {
   display: flex;
   align-items: center;
+  justify-content: space-around;
+}
+
+
+
+.elements {
+  display: flex;
+    gap: 8vh;
+   
 }
 
 .userPr {
-  width: 7vh;
-  border: 1px solid red;
+  width: 6vh;
+  border: 2px solid white;
   border-radius: 15vh;
+}
+
+.signArea {
+  display: flex;
+  align-items: center;
+  gap: 5vh;
+}
+
+.searchInp {
+   width: 22vh;
+   height: 3.5vh;
+   border-radius: 1.5vh;
+   padding-left: 1vh;
+   background-color: #10131d;
+   color: white;
+   border: 2px solid  #262d43;
 }
