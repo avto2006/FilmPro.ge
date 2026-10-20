@@ -47,9 +47,9 @@ function MovieList() {
       <h2>პოპულარული ფილმები</h2>
 
       {/* ფილმების ბადე */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
-        {movies.map((movie) => (
-          <div key={movie.id} style={{ border: '1px solid #333', borderRadius: '8px', padding: '10px', background: '#1a1a1a', color: '#fff' }}>
+      <div style={{ fontSize: '15px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', justifyContent: 'center' }} >
+        {movies.slice(0,5).map((movie) => (
+          <div key={movie.id} style={{  border: '1px solid #939292', borderRadius: '8px', padding: '10px', background: '#1e1e20', color: '#fff' }}>
             <img
               src={
                 movie.poster_path
