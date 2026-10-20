@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+.footer_box {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    gap: 1vh;
+    background-color:  #171b2a;
+}
+
