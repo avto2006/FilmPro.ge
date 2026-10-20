@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "./MovieList.css"
-import durationIcon from './assets/Duration.png'
 
-// 1. ვსაზღვრავთ TypeScript-ის ინტერფეისს ფილმისთვის
 interface Movie {
   id: number;
   title: string;
@@ -11,10 +8,12 @@ interface Movie {
 }
 
 function MovieList() {
-  // 2. ტიპიზაციას ვაკეთებთ state-ისთვის Movie[]
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  
+  // State არჩეული ფილმის ID-ის შესანახად
+  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
 
   const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -27,21 +26,14 @@ function MovieList() {
 
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`)
       .then((res) => {
-        if (!res.ok) {
-          throw new Error('სერვერიდან მონაცემების წამოღება ვერ მოხერხდა.');
-        }
+        if (!res.ok) throw new Error('სერვერიდან მონაცემების წამოღება ვერ მოხერხდა.');
         return res.json();
       })
       .then((data) => {
-        if (data && Array.isArray(data.results)) {
-          setMovies(data.results);
-        } else {
-          setMovies([]);
-        }
+        setMovies(data.results || []);
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Fetch error:', err);
         setError(err.message);
         setLoading(false);
       });
@@ -51,11 +43,13 @@ function MovieList() {
   if (error) return <h2 style={{ color: 'red' }}>შეცდომა: {error}</h2>;
 
   return (
-    <div style={{ padding: '18vh' }}>
+    <div style={{ padding: '20px' }}>
       <h2>პოპულარული ფილმები</h2>
+
+      {/* ფილმების ბადე */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
         {movies.map((movie) => (
-          <div key={movie.id} style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '10px' }}>
+          <div key={movie.id} style={{ border: '1px solid #333', borderRadius: '8px', padding: '10px', background: '#1a1a1a', color: '#fff' }}>
             <img
               src={
                 movie.poster_path
@@ -65,11 +59,86 @@ function MovieList() {
               alt={movie.title || 'Movie'}
               style={{ width: '100%', borderRadius: '6px' }}
             />
-            <h3>{movie.title || 'უცნობი სათაური'}</h3>
-            <p>IMDB: {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
+            <h3 style={{ fontSize: '16px', margin: '10px 0' }}>{movie.title || 'უცნობი სათაური'}</h3>
+            <p>⭐ {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
+            
+            {/* ღილაკი ფილმის საყურებლად */}
+            <button
+              onClick={() => setSelectedMovieId(movie.id)}
+              style={{
+                width: '100%',
+                padding: '8px',
+                marginTop: '8px',
+                backgroundColor: '#e50914',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+              }}
+            >
+              ▶ ყურება
+            </button>
           </div>
         ))}
       </div>
+
+      {/* 🎬 VIDEO PLAYER MODAL (გამოჩნდება ღილაკზე დაჭერისას) */}
+      {selectedMovieId && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000
+          }}
+        >
+          <div style={{ position: 'relative', width: '80%', maxWidth: '900px', backgroundColor: '#000', borderRadius: '8px', padding: '10px' }}>
+            {/* დახურვის ღილაკი */}
+            <button
+              onClick={() => setSelectedMovieId(null)}
+              style={{
+                position: 'absolute',
+                top: '-35px',
+                right: '0',
+                background: 'transparent',
+                color: '#fff',
+                border: 'none',
+                fontSize: '24px',
+                cursor: 'pointer'
+              }}
+            >
+              ✖ დახურვა
+            </button>
+
+            {/* Iframe Embed Player */}
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+             <iframe
+  src={`https://www.2embed.cc/embed/${selectedMovieId}`}
+  style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    border: 'none',
+    borderRadius: '6px'
+  }}
+  allowFullScreen
+  // 🛡️ ეს აკრძალავს რეკლამების ახალ ტაბში გადაყვანას/გახსნას:
+
+  title="Movie Player"
+></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
