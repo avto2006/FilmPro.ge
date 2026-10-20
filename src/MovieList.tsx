@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "./MovieList.css"
+import durationIcon from './assets/Duration.png'
 
 // 1. ვსაზღვრავთ TypeScript-ის ინტერფეისს ფილმისთვის
 interface Movie {
@@ -49,7 +51,7 @@ function MovieList() {
   if (error) return <h2 style={{ color: 'red' }}>შეცდომა: {error}</h2>;
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '18vh' }}>
       <h2>პოპულარული ფილმები</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
         {movies.map((movie) => (
@@ -64,7 +66,7 @@ function MovieList() {
               style={{ width: '100%', borderRadius: '6px' }}
             />
             <h3>{movie.title || 'უცნობი სათაური'}</h3>
-            <p>⭐ {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
+            <p>IMDB: {movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</p>
           </div>
         ))}
       </div>

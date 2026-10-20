@@ -1,6 +1,7 @@
 import './App.css'
 import Navbar from './Navbar'
 import MovieList from './MovieList'
+import Footer from './Footer'
 
 
 
@@ -11,6 +12,7 @@ function App() {
     <>
       <Navbar />
       <MovieList />
+      <Footer />
     </>
   )
 }
