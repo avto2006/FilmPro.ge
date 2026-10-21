@@ -55,9 +55,9 @@ function MovieList() {
     <div style={{ padding: '20px' }}>
       
       {/* 1. პოპულარული ფილმების სექცია */}
-      <section style={{ marginBottom: '40px' }}>
+      <section style={{ marginBottom: '40px', marginLeft: "8vh", marginTop: "5vh"  }}>
         <h2 style={{ color: '#fff', marginBottom: '15px' }}> პოპულარული ფილმები</h2>
-        <div style={{ fontSize: '15px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', justifyContent: 'center' }}>
+        <div style={{ fontSize: '15px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '20px', justifyContent: 'center' }}>
           {popularMovies.slice(0, 5).map((movie) => (
             <div key={movie.id} style={{ border: '1px solid #939292', borderRadius: '8px', padding: '10px', background: '#1e1e20', color: '#fff' }}>
               <img
@@ -94,7 +94,7 @@ function MovieList() {
       </section>
 
       {/* 2. ბოლოს დამატებული ფილმების სექცია */}
-      <section style={{ marginBottom: '40px' }}>
+      <section style={{ marginBottom: '40px', marginLeft: "8vh", marginTop: "5vh" }}>
         <h2 style={{ color: '#fff', marginBottom: '15px' }}> ბოლოს დამატებული ფილმები</h2>
         <div style={{ fontSize: '15px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px', justifyContent: 'center' }}>
           {latestMovies.slice(0, 5).map((movie) => (

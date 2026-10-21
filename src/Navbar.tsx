@@ -1,4 +1,3 @@
-import { useState } from "react";
 import userProfile from './assets/user.png'
 
 
@@ -30,7 +29,7 @@ const Navbar = () => {
                 <div className=""></div>
 
                 <div className="logoDiv">
-            <a href="#" className="logo" >
+            <a  href="#" className="logo" >
               KinoPro.ge
             </a>
           </div>
