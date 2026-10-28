@@ -13,6 +13,7 @@
     "@n8n/chat": "^1.43.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "swiper": "^14.3.0",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
