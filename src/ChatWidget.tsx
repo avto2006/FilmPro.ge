@@ -11,13 +11,13 @@ export default function ChatWidget() {
       mode: 'window',
       showWelcomeScreen: false,
       initialMessages: [
-        'გამარჯობა! 👋',
-        'აღწერე ფილმი და ასისტენტი გიპოვის მას',
+        'მოგესალმები! ',
+        'აღწერე ფილმი და ასისტენტი გიპოვის მას  ',
       ],
       i18n: {
         en: {
-          title: 'ფილმების ასისტენტი',
-          subtitle: 'მკითხე ნებისმიერი ფილმის შესახებ',
+          title: 'AI ასისტენტი',
+          subtitle: 'მიიღე ფილმების რეკომენდაცია!',
           footer: '',
           getStarted: 'ახალი საუბარი',
           inputPlaceholder: 'დაწერე შეტყობინება...',
@@ -39,15 +39,16 @@ export default function ChatWidget() {
           --chat--color-primary: #e50914 !important;
           --chat--color-primary-shade-50: #b80710 !important;
           --chat--color-primary-shade-100: #8d040a !important;
-          --chat--color-background: #0b0f19 !important;
+          --chat--color-background: #a60e0e !important;
           --chat--color-font: #f8fafc !important;
-          --chat--header--background: #151c2c !important;
+          --chat--header--background: #6a1212 !important;
           --chat--header--color: #ffffff !important;
-          --chat--message--bot--background: #1e293b !important;
+          --chat--message--bot--background: #bc2222  !important;
           --chat--message--bot--color: #ffffff !important;
           --chat--message--user--background: #e50914 !important;
           --chat--message--user--color: #ffffff !important;
           --chat--toggle--background: #e50914 !important;
+          
         }
 
         /* Direct targeting of buttons and chat elements */
@@ -59,13 +60,11 @@ export default function ChatWidget() {
         }
 
         [class*="chat-header"] {
-          background-color: #151c2c !important;
+          background-color: #10131d !important;
           color: #ffffff !important;
         }
 
-        [class*="chat-body"], [class*="chat-window"] {
-          background-color: #0b0f19 !important;
-        }
+      
       `;
       document.head.appendChild(style);
 
